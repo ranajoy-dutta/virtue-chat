@@ -1,0 +1,83 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.venv
+
+# Cache & Logs
+*.log
+logs/
+debug.log
+*.out
+
+# Environment variables
+.env
+.envrc
+*.ini
+*.cfg
+*.toml
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# MyPy, Pyright, and other type-checking files
+.mypy_cache/
+.pytest_cache/
+.pyrightcache/
+
+# Coverage reports
+.coverage
+htmlcov/
+*.cover
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# JetBrains (PyCharm)
+.idea/
+*.iml
+
+# Databases (SQLite)
+*.db
+*.sqlite3
+chatbot.db
+
+# Docker
+*.dockerfile
+docker-compose.override.yml
+
+# AWS, Azure, Google Cloud, and Terraform
+.aws/
+.azure/
+.gcloud/
+terraform.tfstate
+terraform.tfstate.backup
+
+# Local tools & lock files
+Pipfile
+Pipfile.lock
+poetry.lock
+yarn.lock
+npm-debug.log*
+
+# MacOS
+.DS_Store
+
+# System files
+Thumbs.db
+Desktop.ini
+
+# Others
+structure.txt
+.gradio/**
