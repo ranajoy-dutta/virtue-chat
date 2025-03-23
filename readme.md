@@ -1,6 +1,7 @@
 # Local/Personal Chatbot
 
 This project is a personal, local yet scalable and extendable chatbot application that integrates with a large language model (LLM) to provide conversational AI capabilities. The application is built using Python and leverages various libraries and frameworks to manage the chat interface, database interactions, and LLM integrations.
+Another objective is to have this as a project with different reusable components for other side projects (Often serves as a boilderplate / jump starter :) ).    
 
 ## Table of Contents
 
