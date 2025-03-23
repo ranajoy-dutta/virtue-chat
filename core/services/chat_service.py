@@ -1,6 +1,6 @@
 from typing import Dict, List, Optional
 from core.interfaces.llm_provider import LLMProvider
-from infrastructure.database.repository import ChatRepository
+from core.database.repository import ChatRepository
 
 class ChatService:
     def __init__(self, llm_provider: LLMProvider, chat_repository: ChatRepository, config: Dict):

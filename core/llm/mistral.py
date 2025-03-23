@@ -1,7 +1,5 @@
 from typing import List, Dict, Any
-import mistralai
 from core.interfaces.llm_provider import LLMProvider
-from mistralai import Mistral
 
 from langchain_mistralai import ChatMistralAI
 from typing import AsyncGenerator

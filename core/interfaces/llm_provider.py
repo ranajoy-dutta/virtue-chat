@@ -22,9 +22,9 @@ class LLMFactory:
     @staticmethod
     def create(provider: str, config: Dict[str, Any]) -> LLMProvider:
         """Create an LLM provider instance based on configuration."""
-        from infrastructure.llm.mistral import MistralProvider
-        # from infrastructure.llm.openai import OpenAIProvider
-        # from infrastructure.llm.gemini import GeminiProvider
+        from core.llm.mistral import MistralProvider
+        # from core.llm.openai import OpenAIProvider
+        # from core.llm.gemini import GeminiProvider
 
         providers = {
             'mistral': MistralProvider,

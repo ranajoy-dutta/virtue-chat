@@ -15,10 +15,16 @@ class ConfigLoader:
             cls._instance._config = cls._instance._load_config(config_path)
         return cls._instance
 
+    def __getattr__(self, name):
+        """Enable dot notation access for top-level and nested attributes."""
+        value = self._config.get(name)
+        if isinstance(value, dict):  # Convert dictionaries to ConfigLoader for deeper dot access
+            return ConfigLoader._dict_to_attr(value)
+        return value
+
     def _load_config(self, config_path=None):
         """Loads the configuration from a YAML file and applies environment variable substitution."""
         load_dotenv()
-
         config_path = Path(config_path) if config_path else Path(__file__).parent / 'config.yaml'
         if not config_path.exists():
             raise FileNotFoundError(f"Configuration file not found: {config_path}")
@@ -38,29 +44,14 @@ class ConfigLoader:
             return re.sub(r'\${(\w+)}', lambda m: os.getenv(m.group(1), m.group(0)), value)
         return value
 
-    def get(self, key, default=None):
-        """Fetches a configuration value using dot notation (e.g., 'database.host')."""
-        keys = key.split(".")
-        value = self._config
-        for k in keys:
-            if isinstance(value, dict) and k in value:
-                value = value[k]
-            else:
-                return default
-        return value
-
-    def get_config(self) -> Dict[str, Any]:
-        """Get the configuration dictionary."""
-        return self._config
-
-    def get_llm_config(self) -> Dict[str, Any]:
-        """Get LLM-specific configuration."""
-        return self._config.get('llm', {})
-
-    def get_database_config(self) -> Dict[str, Any]:
-        """Get database-specific configuration."""
-        return self._config.get('database', {})
-
-    def get_chat_config(self) -> Dict[str, Any]:
-        """Get chat-specific configuration."""
-        return self._config.get('chat', {})
+    @staticmethod
+    def _dict_to_attr(d):
+        """Convert a dictionary to an object supporting dot notation."""
+        class AttrDict(dict):
+            """Dictionary subclass that allows attribute-style access."""
+            def __getattr__(self, item):
+                value = self.get(item)
+                if isinstance(value, dict):
+                    return ConfigLoader._dict_to_attr(value)
+                return value
+        return AttrDict(d)
